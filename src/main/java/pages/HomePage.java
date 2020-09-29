@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import utils.Generators;
 
 public class HomePage extends BasePage {
 
@@ -13,15 +13,27 @@ public class HomePage extends BasePage {
     @FindBy(tagName = "h1")
     private WebElement header;
 
+    @FindBy(id = "email_create")
+    private WebElement emailTextBx;
+
     public HomePage(WebDriver driver) {
         super(driver);
 //        wait.until(ExpectedConditions
 //                .textToBePresentInElement(header,"Strona glowna"));
     }
 
-    public SignInPage goToSignIn() {
+    @FindBy(id = "SubmitCreate")
+    private WebElement submitEmailButton;
+
+    public SignUpPage goToSignUp() {
         loginBtn.click();
-        return new SignInPage(driver);
+        emailTextBx.clear();
+        emailTextBx.sendKeys("jakisemail" + Generators.randomIntegerGenerator(10000) + "@gmail.com");
+        submitEmailButton.click();
+        return new SignUpPage(driver);
     }
+
+
+//    public void enter
 
 }
