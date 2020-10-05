@@ -17,7 +17,6 @@ public abstract class BaseTest {
     @BeforeTest
     public void setUp() {
         BasicConfigurator.configure();
-//        WebDriverManager.chromedriver().setup();
         System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get(mainUrl);

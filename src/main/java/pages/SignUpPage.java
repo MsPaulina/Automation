@@ -18,7 +18,10 @@ import static org.testng.Assert.assertTrue;
 public class SignUpPage extends BasePage {
 
     @FindBy(id = "id_gender2")
-    private WebElement titleRadioButton;
+    private WebElement mrStitleRadioButton;
+
+    @FindBy(id = "id_gender1")
+    private WebElement mrtitleRadioButton;
 
     @FindBy(id = "customer_firstname")
     private WebElement firstName;
@@ -72,48 +75,36 @@ public class SignUpPage extends BasePage {
         super(driver);
     }
 
-    public SignUpPage selectTitle() {
-//        TODO DODAC W PARAMETRACH POZNIEJ ZEBY ROBILO DLA PANI I PANA
-        titleRadioButton.click();
-        titleRadioButton.isSelected();
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+    public SignUpPage selectTitle(String mrOrMRs) {
+        if (mrOrMRs.equalsIgnoreCase("MRS")) {
+            if (!mrStitleRadioButton.isSelected()) {
+                mrStitleRadioButton.click();
+                System.out.println("Mrs radiobutton selected");
+            }
+        } else if (mrOrMRs.equalsIgnoreCase("MR")) {
+            if (!mrtitleRadioButton.isSelected()) {
+                mrtitleRadioButton.click();
+                System.out.println("Mr radiobutton selected");
+            }
+        } else throw new java.lang.RuntimeException("Bad value of Mrs or Mr entered.");
         return this;
     }
 
     public SignUpPage enterFirstName() {
         firstName.clear();
         firstName.sendKeys(Generators.getAlphaString(7));
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return this;
     }
 
     public SignUpPage enterLastName() {
         lastName.clear();
         lastName.sendKeys(Generators.getAlphaString(9));
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return this;
     }
 
     public SignUpPage createPassword() {
         password.clear();
         password.sendKeys(Generators.randomAlphaNumeric(10));
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return this;
     }
 
@@ -122,23 +113,8 @@ public class SignUpPage extends BasePage {
         Select dropdownMonthOfBirth = new Select(monthOfBirthDropdown);
         Select dropdownYearOfBirth = new Select(yearOfBirthDropdown);
         dropdownDateOfBirth.selectByValue(String.valueOf(date));
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         dropdownMonthOfBirth.selectByValue(String.valueOf(month));
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         dropdownYearOfBirth.selectByValue(String.valueOf(year));
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         return this;
     }
 
@@ -161,7 +137,8 @@ public class SignUpPage extends BasePage {
                 Generators.randomIntegerGenerator(20));
         return this;
     }
-//    hehehe
+
+    //    hehehe
     public SignUpPage enterCity(String parameterCity) {
         city.clear();
         city.sendKeys(parameterCity);
@@ -187,11 +164,6 @@ public class SignUpPage extends BasePage {
         } else {
             System.out.println("Error, state: " + enteredStateName + " doesn't exist in the dropdown");
         }
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         //validation
         assertTrue(found);
         return this;
@@ -243,9 +215,9 @@ public class SignUpPage extends BasePage {
     public SignUpPage enterAdditionalInformation() {
 
         List<String> additionalInfolist = new ArrayList<>();
-        additionalInfolist.add("Jsdfsdf");
-        additionalInfolist.add(" sdfdsfdsdsds");
-        additionalInfolist.add(" sdfdsfdsfdsf");
+        additionalInfolist.add("Jacek Sasin prze....");
+        additionalInfolist.add("70 mln zl na wybory");
+        additionalInfolist.add("które się nie odbyły");
 
         additionalTextBox.clear();
         String additionalInfInputText = String.join(" ", additionalInfolist);
@@ -280,11 +252,6 @@ public class SignUpPage extends BasePage {
 
     public RegistrationConfirmation clickRegister() {
         registerButton.click();
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return new RegistrationConfirmation(driver);
     }
 

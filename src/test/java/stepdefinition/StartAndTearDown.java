@@ -11,6 +11,8 @@ import utils.PropertyManager;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertTrue;
+
 public class StartAndTearDown implements En {
 
     public WebDriver driver;
@@ -20,11 +22,9 @@ public class StartAndTearDown implements En {
     private RegistrationConfirmation registrationConfirmation;
 
     public StartAndTearDown() {
-
         Given("Browser is set up", () ->
-
         {
-            System.out.println("przegladarka zyje");
+            System.out.println("Browser is starting up");
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.get(mainUrl);
@@ -33,29 +33,79 @@ public class StartAndTearDown implements En {
 
         });
 
+        Given("User is on the homepage", () ->
+        {
+            System.out.println("User is on the homepage");
+//            System.out.println(driver.getTitle());
+            assertTrue(driver.getTitle().contains("My Store"));
+        });
+
         After("@common", () -> {
             driver.quit();
         });
 
-        When("user goes to goes to sign up page", () -> {
-            // Write code here that turns the phrase above into concrete actions
+        When("user goes to sign up page", () -> {
             signUpPage = new HomePage(driver).goToSignUp();
-
         });
 
-        Given("User is on the homepage", () ->
-
-        {
-            System.out.println("homepage zyje");
+        When("user selects their title {string}", (String string) -> {
+            signUpPage.selectTitle(string);
         });
+
+        When("user enters first name", () -> {
+            signUpPage.enterFirstName();
+        });
+
+        When("user enters last name", () -> {
+            signUpPage.enterLastName();
+        });
+
+        When("user creates password", () -> {
+            signUpPage.createPassword();
+        });
+
+        When("user selects date of birth   {int}, {int}, {int}", (Integer int1, Integer int2, Integer int3) -> {
+            signUpPage.selectDateOfBirth(int1, int2, int3);
+        });
+
 
         When("user enters setReceiveOffers {string}", (String string) -> {
-            // Write code here that turns the phrase above into concrete actions
             signUpPage.setReceiveOffers(string);
         });
 
+        When("user enters their address", () -> {
+            signUpPage.enterAddress();
+        });
+
+        When("user enters their city of residence {string}", (String string) -> {
+            signUpPage.enterCity(string);
+        });
+
+        When("user selects their state of residence {string}", (String string) -> {
+            signUpPage.selectState(string);
+        });
+
+        When("user enters their postal code  {string}", (String string) -> {
+            signUpPage.enterPostalCode(string);
+        });
+
+        When("user selects their country of residence  {string}", (String string) -> {
+            signUpPage.selectCountry(string);
+        });
+
+        When("user enters additional information", () -> {
+            signUpPage.enterAdditionalInformation();
+        });
+
+        When("user enters mobile phone number", () -> {
+            signUpPage.enterMobilePhoneNo();
+        });
+
+        When("user enters alias email address", () -> {
+            signUpPage.enterAliasEmail();
+        });
+
         When("user click register button", () -> {
-            // Write code here that turns the phrase above into concrete actions
 //            inicjalizacja obiektu w zmiennej regConf
             registrationConfirmation = signUpPage.clickRegister();
 
