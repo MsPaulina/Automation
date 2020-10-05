@@ -17,11 +17,6 @@ public class RegistrationConfirmation extends BasePage {
 
     public RegistrationConfirmation waitForConfirmationMsg() {
         String actualString = registrationConfirmation.getText();
-        try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         assertTrue(registrationConfirmation
                 .getText()
                 .contains("Welcome to your account. Here you can manage all of your personal information and orders."));

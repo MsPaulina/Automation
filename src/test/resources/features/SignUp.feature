@@ -1,3 +1,4 @@
+@common
 Feature: feature to test registration functionality
 
   Background:
@@ -6,5 +7,11 @@ Feature: feature to test registration functionality
 
   Scenario: The user should be able to successfully sign up to automationpractice website
     Given User is on the homepage
-    When  user enters
+    When  user goes to goes to sign up page
+    When  user enters setReceiveOffers "<varA>"
+    When user click register button
     Then user receives confirmation of registration
+
+    Examples:
+      | varA |
+      | Yes  |
