@@ -223,12 +223,6 @@ public class SignUpPage extends BasePage {
         String additionalInfInputText = String.join(" ", additionalInfolist);
 
         additionalTextBox.sendKeys(additionalInfInputText);
-
-//        additionalTextBox.sendKeys(new StringBuilder()
-//                .append(additionalInfolist.get(0))
-//                .append(additionalInfolist.get(1))
-//                .append(additionalInfolist.get(2)));
-
         return this;
     }
 
@@ -238,7 +232,6 @@ public class SignUpPage extends BasePage {
 //         fixed length random number of 10 digits
         String number = String.valueOf(((long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L));
         mobilePhone.sendKeys(number);
-//        mobilePhone.sendKeys(new StringBuilder()
         return this;
 
     }
@@ -256,66 +249,3 @@ public class SignUpPage extends BasePage {
     }
 
 }
-
-
-// I SPOSOB
-    /*public SignUpPage enterEmail(String email) {
-        emailInput.clear();
-        emailInput.sendKeys(email);
-        return this;
-    }
-
-    public SignUpPage enterPassword(String passw) {
-        passInput.clear();
-        passInput.sendKeys(passw);
-        return this;
-    }
-
-    public SignUpPage clickSignInButton() {
-        signInBtn.click();
-        return this;
-    }*/
-
-
-/*2 sposob*/
-
-   /* public void enterEmail1(String email) {
-        emailInput.clear();
-        emailInput.sendKeys(email);
-    }
-
-    public void enterPassword1(String passw) {
-        passInput.clear();
-        passInput.sendKeys(passw);
-    }
-
-    public void clickSignInButton1() {
-        signInBtn.click();
-    }
-
-
-    public String getEmailValue() {
-        return emailInput.getAttribute("value");
-    }*/
-//    public SignInPage signIn(String email, String pass) {
-//        emailInput.clear();
-//        emailInput.sendKeys(email);
-//        return
-//
-//        passInput.clear();
-//        passInput.sendKeys(pass);
-//        //        return
-//        signInBtn.click();
-//        return this;
-//    }
-
-//    to bylo dobrze
-    /*    @FindBy(id = "email")
-    private WebElement emailInput;
-
-    @FindBy(id = "passwd")
-    private WebElement passInput;
-
-    @FindBy(id = "SubmitLogin")
-    private WebElement signInBtn;*/
-

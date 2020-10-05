@@ -32,8 +32,4 @@ public class HomePage extends BasePage {
         submitEmailButton.click();
         return new SignUpPage(driver);
     }
-
-
-//    public void enter
-
 }

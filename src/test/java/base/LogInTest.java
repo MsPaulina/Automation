@@ -25,7 +25,5 @@ public class LogInTest extends BaseTest {
                 .enterAliasEmail()
                 .clickRegister()
                 .waitForConfirmationMsg();
-
-
     }
 }
