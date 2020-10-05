@@ -161,7 +161,7 @@ public class SignUpPage extends BasePage {
                 Generators.randomIntegerGenerator(20));
         return this;
     }
-
+//    hehehe
     public SignUpPage enterCity(String parameterCity) {
         city.clear();
         city.sendKeys(parameterCity);
@@ -243,9 +243,9 @@ public class SignUpPage extends BasePage {
     public SignUpPage enterAdditionalInformation() {
 
         List<String> additionalInfolist = new ArrayList<>();
-        additionalInfolist.add("Jacek Sasin przej....");
-        additionalInfolist.add(" 70 mln zł na wybory które");
-        additionalInfolist.add(" się nie odbyły");
+        additionalInfolist.add("Jsdfsdf");
+        additionalInfolist.add(" sdfdsfdsdsds");
+        additionalInfolist.add(" sdfdsfdsfdsf");
 
         additionalTextBox.clear();
         String additionalInfInputText = String.join(" ", additionalInfolist);
@@ -281,7 +281,7 @@ public class SignUpPage extends BasePage {
     public RegistrationConfirmation clickRegister() {
         registerButton.click();
         try {
-            Thread.sleep(20000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
